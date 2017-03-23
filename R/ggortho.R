@@ -27,18 +27,11 @@ construct_ggortho = function(img, xyz = NULL, ...) {
   if (is.null(xyz)) {
     xyz = ceiling(dim(img) / 2)
   }
-  res = slice_colour_df(img_df, xyz = xyz)
-  out = ggplot(
-    data = res,
-    aes_string(x = "x", y = "y", fill = "colour")) +
-    geom_tile() +
-    facet_wrap(~ plane2, nrow = 2, ncol = 2,
-               scales = "free")
-  out = out + theme_ortho() +
-    scale_fill_identity()
+  slice_df = slice_colour_df(img_df, xyz = xyz)
+  out = ggortho_slice_df(slice_df)
   L = list(plot = out,
            df = img_df,
-           sliced_df = res,
+           sliced_df = slice_df,
            xyz = xyz)
   return(L)
 }
@@ -54,4 +47,29 @@ ggortho = function(img, xyz = NULL, ...) {
 #' @export
 ggortho2 = function(...) {
   return(ggortho(...))
+}
+
+
+
+#' @rdname ggortho
+#' @param img_df Image \code{data.frame} constructed from \code{\link{img_colour_df}}
+#' @export
+ggortho_img_df = function(img_df, xyz = NULL) {
+  slice_df = slice_colour_df(img_df, xyz = xyz)
+  return(ggortho_slice_df(slice_df))
+}
+
+#' @rdname ggortho
+#' @param slice_df Image \code{data.frame} constructed from \code{\link{slice_colour_df}}
+#' @export
+ggortho_slice_df = function(slice_df) {
+  out = ggplot(
+    data = slice_df,
+    aes_string(x = "x", y = "y", fill = "colour")) +
+    geom_tile() +
+    facet_wrap(~ plane2, nrow = 2, ncol = 2,
+               scales = "free")
+  out = out + theme_ortho() +
+    scale_fill_identity()
+  return(out)
 }

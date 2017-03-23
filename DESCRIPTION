@@ -1,7 +1,7 @@
 Package: ggneuro
 Type: Package
 Title: Plotting Functions for Neuroimaging Data in 'ggplot2'
-Version: 0.1.0
+Version: 0.2
 Author: John Muschelli
 Maintainer: John Muschelli <muschellij2@gmail.com>
 Description: Plotting functions and themes for 'ggplot2' are included for 

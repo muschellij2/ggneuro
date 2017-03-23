@@ -4,6 +4,8 @@
 \alias{construct_ggortho}
 \alias{ggortho}
 \alias{ggortho2}
+\alias{ggortho_img_df}
+\alias{ggortho_slice_df}
 \title{Plot Orthographic view of an image using \code{ggplot2}}
 \usage{
 construct_ggortho(img, xyz = NULL, ...)
@@ -11,6 +13,10 @@ construct_ggortho(img, xyz = NULL, ...)
 ggortho(img, xyz = NULL, ...)
 
 ggortho2(...)
+
+ggortho_img_df(img_df, xyz = NULL)
+
+ggortho_slice_df(slice_df)
 }
 \arguments{
 \item{img}{object that can be coerced to a \code{nifti} using
@@ -19,6 +25,10 @@ ggortho2(...)
 \item{xyz}{coordinates to be plotted}
 
 \item{...}{arguments to pass to \code{\link{img_colour_df}}}
+
+\item{img_df}{Image \code{data.frame} constructed from \code{\link{img_colour_df}}}
+
+\item{slice_df}{Image \code{data.frame} constructed from \code{\link{slice_colour_df}}}
 }
 \value{
 \code{construct_ggortho} returns a list of the constructed plot,
