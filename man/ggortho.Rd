@@ -8,21 +8,23 @@
 \alias{ggortho_slice_df}
 \title{Plot Orthographic view of an image using \code{ggplot2}}
 \usage{
-construct_ggortho(img, xyz = NULL, ...)
+construct_ggortho(img, xyz = NULL, crosshairs = TRUE, ...)
 
-ggortho(img, xyz = NULL, ...)
+ggortho(img, xyz = NULL, crosshairs = TRUE, ...)
 
 ggortho2(...)
 
-ggortho_img_df(img_df, xyz = NULL)
+ggortho_img_df(img_df, xyz = NULL, crosshairs = TRUE)
 
-ggortho_slice_df(slice_df)
+ggortho_slice_df(slice_df, crosshairs = TRUE)
 }
 \arguments{
 \item{img}{object that can be coerced to a \code{nifti} using
 \code{\link{check_nifti}}}
 
 \item{xyz}{coordinates to be plotted}
+
+\item{crosshairs}{should crosshairs be added?}
 
 \item{...}{arguments to pass to \code{\link{img_colour_df}}}
 

@@ -5,6 +5,7 @@
 #' @param img object that can be coerced to a \code{nifti} using
 #' \code{\link{check_nifti}}
 #' @param xyz coordinates to be plotted
+#' @param crosshairs should crosshairs be added?
 #' @param ... arguments to pass to \code{\link{img_colour_df}}
 #'
 #' @return \code{construct_ggortho} returns a list of the constructed plot,
@@ -21,14 +22,15 @@
 #' ggortho(img)
 #' @importFrom neurobase check_nifti slice_colour_df check_nifti img_colour_df
 #' @importFrom ggplot2 ggplot geom_tile facet_wrap scale_fill_identity aes aes_string
-construct_ggortho = function(img, xyz = NULL, ...) {
+#' @importFrom ggplot2 geom_hline geom_vline
+construct_ggortho = function(img, xyz = NULL, crosshairs = TRUE, ...) {
   img = check_nifti(img)
   img_df = img_colour_df(img = img, ...)
   if (is.null(xyz)) {
     xyz = ceiling(dim(img) / 2)
   }
   slice_df = slice_colour_df(img_df, xyz = xyz)
-  out = ggortho_slice_df(slice_df)
+  out = ggortho_slice_df(slice_df, crosshairs = crosshairs)
   L = list(plot = out,
            df = img_df,
            sliced_df = slice_df,
@@ -38,7 +40,7 @@ construct_ggortho = function(img, xyz = NULL, ...) {
 
 #' @rdname ggortho
 #' @export
-ggortho = function(img, xyz = NULL, ...) {
+ggortho = function(img, xyz = NULL, crosshairs = TRUE, ...) {
   L = construct_ggortho(img = img, xyz = xyz, ...)
   return(L$plot)
 }
@@ -54,15 +56,15 @@ ggortho2 = function(...) {
 #' @rdname ggortho
 #' @param img_df Image \code{data.frame} constructed from \code{\link{img_colour_df}}
 #' @export
-ggortho_img_df = function(img_df, xyz = NULL) {
+ggortho_img_df = function(img_df, xyz = NULL, crosshairs = TRUE) {
   slice_df = slice_colour_df(img_df, xyz = xyz)
-  return(ggortho_slice_df(slice_df))
+  return(ggortho_slice_df(slice_df, crosshairs = crosshairs))
 }
 
 #' @rdname ggortho
 #' @param slice_df Image \code{data.frame} constructed from \code{\link{slice_colour_df}}
 #' @export
-ggortho_slice_df = function(slice_df) {
+ggortho_slice_df = function(slice_df, crosshairs = TRUE) {
   out = ggplot(
     data = slice_df,
     aes_string(x = "x", y = "y", fill = "colour")) +
@@ -71,5 +73,17 @@ ggortho_slice_df = function(slice_df) {
                scales = "free")
   out = out + theme_ortho() +
     scale_fill_identity()
+  if (crosshairs) {
+    int_df = unique(slice_df[, c("plane", "plane2",
+                                 "xintercept", "yintercept")])
+    out = out +
+      geom_vline(data = int_df,
+                 aes_string(xintercept = "xintercept"),
+                 colour = "red") +
+      geom_hline(data = int_df,
+                 aes_string(yintercept = "yintercept"),
+                 colour = "red")
+
+  }
   return(out)
 }
