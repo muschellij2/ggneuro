@@ -9,8 +9,8 @@ Description: Plotting functions and themes for 'ggplot2' are included for
 License: GPL-2
 Imports:
     neurobase (>= 1.16),
-    ggplot2
-Suggests: 
+    ggplot2,
+    grDevices,
     oro.nifti
 Remotes: muschellij2/neurobase, muschellij2/oro.nifti
 Encoding: UTF-8

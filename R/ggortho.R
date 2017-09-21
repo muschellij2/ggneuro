@@ -29,6 +29,8 @@
 #' @importFrom neurobase check_nifti slice_colour_df check_nifti img_colour_df
 #' @importFrom ggplot2 ggplot geom_tile facet_wrap scale_fill_identity aes aes_string
 #' @importFrom ggplot2 geom_hline geom_vline
+#' @importFrom grDevices gray
+#' @importFrom oro.nifti hotmetal
 construct_ggortho = function(
   img, overlay = NULL,
   xyz = NULL, crosshairs = TRUE,
@@ -85,6 +87,7 @@ ggortho2 = function(...) {
 
 #' @rdname ggortho
 #' @param img_df Image \code{data.frame} constructed from \code{\link{img_colour_df}}
+#' @param overlay_df Image \code{data.frame} constructed from \code{\link{img_colour_df}}
 #' @export
 ggortho_img_df = function(
   img_df,

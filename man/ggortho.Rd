@@ -43,6 +43,8 @@ passed to \code{\link{img_colour_df}}}
 
 \item{img_df}{Image \code{data.frame} constructed from \code{\link{img_colour_df}}}
 
+\item{overlay_df}{Image \code{data.frame} constructed from \code{\link{img_colour_df}}}
+
 \item{slice_df}{Image \code{data.frame} constructed from \code{\link{slice_colour_df}}}
 
 \item{slice_overlay_df}{Image \code{data.frame} constructed from
