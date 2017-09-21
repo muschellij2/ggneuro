@@ -5,32 +5,48 @@
 \alias{ggortho}
 \alias{ggortho2}
 \alias{ggortho_img_df}
+\alias{ggortho_base}
 \alias{ggortho_slice_df}
 \title{Plot Orthographic view of an image using \code{ggplot2}}
 \usage{
-construct_ggortho(img, xyz = NULL, crosshairs = TRUE, ...)
+construct_ggortho(img, overlay = NULL, xyz = NULL, crosshairs = TRUE,
+  col = gray(0:64/64), col.overlay = oro.nifti::hotmetal(), ...)
 
-ggortho(img, xyz = NULL, crosshairs = TRUE, ...)
+ggortho(img, overlay = NULL, xyz = NULL, crosshairs = TRUE, ...)
 
 ggortho2(...)
 
-ggortho_img_df(img_df, xyz = NULL, crosshairs = TRUE)
+ggortho_img_df(img_df, overlay_df = NULL, xyz = NULL, crosshairs = TRUE)
 
-ggortho_slice_df(slice_df, crosshairs = TRUE)
+ggortho_base()
+
+ggortho_slice_df(slice_df, slice_overlay_df = NULL, crosshairs = TRUE)
 }
 \arguments{
 \item{img}{object that can be coerced to a \code{nifti} using
+\code{\link{check_nifti}}}
+
+\item{overlay}{object that can be coerced to a \code{nifti} using
 \code{\link{check_nifti}}}
 
 \item{xyz}{coordinates to be plotted}
 
 \item{crosshairs}{should crosshairs be added?}
 
+\item{col}{Colors to map intensities for \code{img},
+passed to \code{\link{img_colour_df}}}
+
+\item{col.overlay}{Colors to map intensities for \code{overlay},
+passed to \code{\link{img_colour_df}}}
+
 \item{...}{arguments to pass to \code{\link{img_colour_df}}}
 
 \item{img_df}{Image \code{data.frame} constructed from \code{\link{img_colour_df}}}
 
 \item{slice_df}{Image \code{data.frame} constructed from \code{\link{slice_colour_df}}}
+
+\item{slice_overlay_df}{Image \code{data.frame} constructed from
+\code{\link{slice_colour_df}} to overlay}
 }
 \value{
 \code{construct_ggortho} returns a list of the constructed plot,
