@@ -98,6 +98,8 @@ ggortho_img_df = function(
   slice_df = slice_colour_df(img_df, xyz = xyz)
   if (!is.null(overlay_df)) {
     slice_overlay_df = slice_colour_df(overlay_df, xyz = xyz)
+  } else {
+    slice_overlay_df = NULL
   }
   return(ggortho_slice_df(
     slice_df = slice_df,
