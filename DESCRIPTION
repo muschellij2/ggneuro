@@ -1,7 +1,7 @@
 Package: ggneuro
 Type: Package
 Title: Plotting Functions for Neuroimaging Data in 'ggplot2'
-Version: 0.4.1
+Version: 0.5.0
 Date: 2017-10-13
 Author: John Muschelli
 Maintainer: John Muschelli <muschellij2@gmail.com>
@@ -10,7 +10,7 @@ Description: Plotting functions and themes for 'ggplot2' are included for
 License: GPL-2
 Imports:
     neurobase (>= 1.16),
-    ggplot2,
+    ggplot2 (>= 2.2.1.9000),
     grDevices,
     oro.nifti
 Remotes: muschellij2/neurobase, muschellij2/oro.nifti

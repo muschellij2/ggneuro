@@ -32,8 +32,10 @@
 #' @importFrom grDevices gray
 #' @importFrom oro.nifti hotmetal
 construct_ggortho = function(
-  img, overlay = NULL,
-  xyz = NULL, crosshairs = TRUE,
+  img,
+  overlay = NULL,
+  xyz = NULL,
+  crosshairs = TRUE,
   col = gray(0:64/64),
   col.overlay = oro.nifti::hotmetal(),
   ...) {
@@ -113,7 +115,8 @@ ggortho_img_df = function(
 ggortho_base = function() {
   out = ggplot() + facet_wrap(~ plane2, nrow = 2, ncol = 2,
                               scales = "free")
-  out = out + theme_ortho() + scale_fill_identity()
+  out = out + scale_fill_identity()
+  out = out + theme_ortho()
   out
 }
 
